@@ -20,3 +20,6 @@ Projeto desenvolvido a partir da imersão java Alura, mas feito em C#.
 ### 2º Dia
 
 - Criar classe com método para ler, editar e salvar imagem.
+- Primeiro usou imagem salva no computador.
+- Segundo usou endereço de imagem da internet
+- Adicionar parametros ao método, para que o endereço da imagem e o nome final da figurinha pronta, sejam adicionados na chamada do método.
