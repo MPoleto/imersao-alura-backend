@@ -16,3 +16,7 @@ Projeto desenvolvido a partir da imersão java Alura, mas feito em C#.
 - Usar sua criatividade para deixar a saída dos dados mais bonitinha: usar emojis com código UTF-8, mostrar a nota do filme como estrelinhas, decorar o terminal com cores, negrito e itálico usando códigos ANSI, e mais!
 - Mudar o JsonParser para usar uma biblioteca de parsing de JSON -> Biblioteca usada `System.Text.Json.JsonSerializer`
 - Desafio supremo: criar alguma maneira para você dar uma avaliação ao filme, puxando de algum arquivo de configuração OU pedindo a avaliação para o usuário digitar no terminal.
+
+### 2º Dia
+
+- Criar classe com método para ler, editar e salvar imagem.

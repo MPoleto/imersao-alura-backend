@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "stickers", "stickers.csproj", "{6A664D0E-3A6A-4908-8CD8-E3FA90A4AF95}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6A664D0E-3A6A-4908-8CD8-E3FA90A4AF95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A664D0E-3A6A-4908-8CD8-E3FA90A4AF95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A664D0E-3A6A-4908-8CD8-E3FA90A4AF95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A664D0E-3A6A-4908-8CD8-E3FA90A4AF95}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B1812C13-22C6-49E9-B860-B201D1872168}
+	EndGlobalSection
+EndGlobal
