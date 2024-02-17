@@ -9,8 +9,17 @@ namespace stickers;
         public void Criar()
         {
             // LEITURA DA IMAGEM
-            string path = "./img/TopMovies_1.jpg";
-            Bitmap imagemOriginal = new(path);
+            // string path = "./img/TopMovies_1.jpg";
+            // Bitmap imagemOriginal = new(path);
+
+            // ENDEREÇO IMAGEM
+            string url = "https://cdn.myshoptet.com/usr/www.zuty.cz/user/shop/big/14231-1_malovani-podle-cisel-pulp-fiction.png";
+            
+            //ABRIR IMAGEM DA INTERNET COM WEBREQUEST
+            WebRequest request = WebRequest.Create(url);
+            WebResponse response = request.GetResponse();
+            Stream streamImg = response.GetResponseStream();
+            Bitmap imagemOriginal = new(streamImg);
 
             // criar nova imagem em memória com transparencia e com tamanho novo
             int largura = imagemOriginal.Width;
@@ -38,7 +47,7 @@ namespace stickers;
             sticker.DrawString(text, fontConfig, brush, x, y);
 
             // escrever a nova imagem em um arquivo
-            novaImagem.Save("./saida/figurinha.png", System.Drawing.Imaging.ImageFormat.Png);
+            novaImagem.Save("./saida/figurinha1.png", System.Drawing.Imaging.ImageFormat.Png);
             
         }
     }
