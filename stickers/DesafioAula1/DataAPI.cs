@@ -48,7 +48,7 @@ public class DataAPI
         count = 1;
         while (movie.PersonalRating >= count)
         {
-          Console.Write("💚 ");
+          Console.Write("😍 ");
 
           count++;
         }
