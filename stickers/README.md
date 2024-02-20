@@ -12,7 +12,7 @@ Projeto desenvolvido em C# a partir da Imersão Java Alura.
 - Exibir somente as informações selecionadas: titulo, link imagem e nota dos filmes.
 - API alternativa ao do IMDB, usando o top 10 melhores filmes.
 
-#### 🚀 Desafios do Primeiro dia
+#### 🚀 Desafios do 1º dia
 - [x] Usar sua criatividade para deixar a saída dos dados mais bonitinha: usar emojis com código UTF-8, mostrar a nota do filme como estrelinhas, decorar o terminal com cores, negrito e itálico usando códigos ANSI, e mais!
 - [x] Mudar o JsonParser para usar uma biblioteca de parsing de JSON -> Biblioteca usada `System.Text.Json.JsonSerializer`
 - [x] **Desafio supremo:** criar alguma maneira para você dar uma avaliação ao filme, puxando de algum arquivo de configuração ou pedindo a avaliação para o usuário digitar no terminal.
@@ -28,7 +28,7 @@ Projeto desenvolvido em C# a partir da Imersão Java Alura.
 - Segundo usou endereço de imagem da internet
 - Adicionar parametros ao método, para que o endereço da imagem e o nome final da figurinha pronta, sejam adicionados na chamada do método.
 
-#### 🚀 Desafios do Segundo dia
+#### 🚀 Desafios do 2º dia
 - [x] Centralizar o texto na figurinha.
 - [x] Colocar outra fonte como a Comic Sans ou a Impact, a fonte usada em memes.
 - [x] Colocar contorno (outline) no texto da imagem.
@@ -39,3 +39,14 @@ Projeto desenvolvido em C# a partir da Imersão Java Alura.
 - [ ] ~~Desafio supremo: usar alguma biblioteca de manipulação de imagens como OpenCV pra extrair imagem principal e contorná-la.~~  
 
 ### 3º Dia
+
+- Usar API da NASA.
+- Refatorar código seguindo o Paradigma da Orientação à Objetos.
+- [APIs Públicas](https://github.com/public-apis/public-apis).
+
+#### 🚀 Desafios do 3º dia
+- [ ] Transformar a classe que representa os conteúdos em um Record, disponível a partir do Java 16
+- [ ] Criar as suas próprias exceções e usá-las na classe que implementa o cliente HTTP
+- [ ] Usar recursos do Java 8 e posterior, como Streams e Lambdas, para mapear uma lista em uma outra
+- [ ] Criar uma Enum que une, como configurações, a URL da API e o extrator utilizado
+- [ ] Desafio supremo: consumir outras APIs que contém imagens, como a da Marvel, que é bem diferente.

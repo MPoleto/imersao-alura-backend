@@ -6,20 +6,33 @@ namespace stickers;
 #pragma warning disable CA1416 // Validate platform compatibility
 public class GeradoraDeFigurinhas
 {
-    public void CreateSticker(string url, string text, string nameSticker)
+    private readonly HttpClient _client;
+
+    public GeradoraDeFigurinhas()
+    {
+        _client = new();
+    }
+    public async void CreateSticker(string url, string text, string nameSticker)
     {
         // LEITURA DA IMAGEM
         // string path = "./img/TopMovies_1.jpg";
         // Bitmap originalImage = new(path);
 
         // ENDEREÇO IMAGEM
-        // string url = @"https://cdn.myshoptet.com/usr/www.zuty.cz/user/shop/big/14231-1_malovani-podle-cisel-pulp-fiction.png";
+        //string url = @"https://cdn.myshoptet.com/usr/www.zuty.cz/user/shop/big/14231-1_malovani-podle-cisel-pulp-fiction.png";
+
+        var response = _client.GetAsync(url).Result;
+        using var stream = await response.Content.ReadAsStreamAsync();
+        using var memStream = new MemoryStream();
+        await stream.CopyToAsync(memStream);
+        memStream.Position = 0;
+        Bitmap originalImage = new(memStream);
 
         //ABRIR IMAGEM DA INTERNET COM WEBREQUEST
-        WebRequest request = WebRequest.Create(url);
-        WebResponse response = request.GetResponse();
-        Stream streamImage = response.GetResponseStream();
-        Bitmap originalImage = new(streamImage);
+        // WebRequest request = WebRequest.Create(url);
+        // WebResponse response = request.GetResponse();
+        // Stream streamImage = response.GetResponseStream();
+        // Bitmap originalImage = new(streamImage);
 
         // criar nova imagem em memória com transparencia e com tamanho novo
         int widthImage = originalImage.Width;
@@ -39,7 +52,7 @@ public class GeradoraDeFigurinhas
         // escrever uma frase na nova imagem
         float x = widthImage / 2f;
         float y = newHeight - spaceForText / 2.5f;
-
+        
         float fontSize;
         if (text.Length <= 5) fontSize = spaceForText * .83f;
         else if (text.Length > 5 && text.Length <= 7) fontSize = widthImage / (text.Length - 2);
@@ -64,13 +77,13 @@ public class GeradoraDeFigurinhas
         string directoryPath = "./img/";
 
         if (!Directory.Exists(directoryPath)) Directory.CreateDirectory(directoryPath);
-
+        
         string pathToSave = directoryPath + nameSticker + ".png";
 
         newImage.Save(pathToSave, System.Drawing.Imaging.ImageFormat.Png);
 
         sticker.Dispose();
-        streamImage.Dispose();
+        memStream.Dispose();
     }
 }
 #pragma warning restore CA1416 // Validate platform compatibility
