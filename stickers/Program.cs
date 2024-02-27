@@ -1,42 +1,40 @@
-﻿using stickers;
-using stickers.DesafioAula1;
+﻿using Microsoft.Extensions.Configuration;
+using stickers;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-// Conexão HTTP
+var configuration = new ConfigurationBuilder()
+    .AddUserSecrets<Program>()
+    .Build();
+
+var http = new AccessData(configuration);
 
 // IMDB
-string url = "https://mocki.io/v1/9a7c1ca9-29b4-4eb3-8306-1adb9d159060";
-IExtratorDeConteudo extrator = new ExtratorDeConteudoDoIMDB();
+// string json = await http.GetData(ImageAPI.IMDB.URL());
+// List<Content> contents = ImageAPI.IMDB.Extractor().ExtractContent(json);
 
 // NASA
-//string url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2024-01-01&end_date=2024-01-05";
-//IExtratorDeConteudo extrator = new ExtratorDeConteudoDaNasa();
+// string json = await http.GetData(ImageAPI.NASA.URL());
+// List<Content> contents = ImageAPI.NASA.Extractor().ExtractContent(json);
 
-var http = new ClienteHttp();
-string json = await http.BuscaDados(url);
+// Pexels
+string json = await http.GetData(ImageAPI.PEXELS.URL(), ImageAPI.PEXELS.HasKey(), ImageAPI.PEXELS.Key());
+List<Content> contents = ImageAPI.PEXELS.Extractor().ExtractContent(json);
 
-// Extrair dados de interesse: titulo, poster, classificação
-List<Conteudo> conteudos = extrator.ExtraiConteudos(json);
+var stickers = new StickersGenerator();
 
-  
-// Exibir e manipular os dados
-var geradora = new GeradoraDeFigurinhas();
-
-for (var i = 0; i < 3; i++)
+for (var i = 0; i < 5; i++)
 {
-  Conteudo conteudo = conteudos[i];
+  Content content = contents[i];
 
-  geradora.CreateSticker(conteudo.UrlImagem, "TOPZERA", conteudo.Titulo);
+  string text;
+
+  if (content.Ranking != 0)
+  {
+    text = ModifyText.AddTextByRating(i, content.Ranking);
+  }
+  else text = "SHOW";
+
+  stickers.CreateSticker(content.UrlImage, text, $"{content.Title}");
 }
-
-// Desafios - Aula 1
-/*
-DataAPI getMovies = new();
-var moviesList = await getMovies.GetDataAPI(url);
-getMovies.PersonalRating(moviesList);
-getMovies.ViewData(moviesList);
-*/
-
-
 

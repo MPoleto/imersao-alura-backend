@@ -19,3 +19,12 @@ C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6
 C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
 C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\obj\Debug\net6.0\stickers.csproj.CopyComplete
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Configuration.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Abstractions.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Configuration.Json.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Configuration.UserSecrets.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.FileProviders.Physical.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.FileSystemGlobbing.dll
+C:\Users\marid\Documents\Pafarmaxp\imersao-backend-alura\stickers\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
