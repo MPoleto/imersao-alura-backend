@@ -5,6 +5,8 @@ VisualStudioVersion = 17.6.33829.357
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "stickers", "stickers\stickers.csproj", "{06FA72BC-3006-46E0-90FA-3C9B76ADA77E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "languages-api", "languages-api\languages-api.csproj", "{CD0814FA-3008-455A-9A88-09DF7B6D6B19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{06FA72BC-3006-46E0-90FA-3C9B76ADA77E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{06FA72BC-3006-46E0-90FA-3C9B76ADA77E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{06FA72BC-3006-46E0-90FA-3C9B76ADA77E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CD0814FA-3008-455A-9A88-09DF7B6D6B19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CD0814FA-3008-455A-9A88-09DF7B6D6B19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CD0814FA-3008-455A-9A88-09DF7B6D6B19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CD0814FA-3008-455A-9A88-09DF7B6D6B19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
