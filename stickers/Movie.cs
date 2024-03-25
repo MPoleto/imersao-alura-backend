@@ -7,6 +7,7 @@ namespace stickers;
         [property:JsonPropertyName("items")]
         public List<Movie>? Movie { get; set; }
     }
+    
     public class Movie
     {
         [property:JsonPropertyName("id")]
