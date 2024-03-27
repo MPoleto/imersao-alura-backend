@@ -53,5 +53,4 @@ public class ImageAPI
     public static readonly ImageAPI NASA = new(@"https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2024-01-01&end_date=2024-01-05", new ContentExtractorNasa());
     public static readonly ImageAPI PEXELS = new(@"https://api.pexels.com/v1/curated?per_page=5", 
     new ContentExtractorPexels(), true, "PexelsKey");
-
 }

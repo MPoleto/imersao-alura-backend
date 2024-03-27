@@ -35,6 +35,6 @@ for (var i = 0; i < 5; i++)
   }
   else text = "SHOW";
 
-  stickers.CreateSticker(content.UrlImage, text, $"{content.Title}");
+  stickers.CreateSticker(content.UrlImage, text, content.Title);
 }
 

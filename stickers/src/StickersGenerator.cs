@@ -63,26 +63,24 @@ public class StickersGenerator
 
     private async Task<Bitmap> GetImage(string urlImagem)
     {
-        if (!(urlImagem.EndsWith(".jpg") 
-            || urlImagem.EndsWith(".jpeg") 
-            || urlImagem.EndsWith(".png") 
-            || urlImagem.EndsWith(".gif") 
-            || urlImagem.EndsWith(".tiff") 
-            || urlImagem.EndsWith(".bmp")  
-            || urlImagem.EndsWith(".exif")))
-        {
-            throw new ImageExtensionsException("Ops.. Algo deu errado. Verifique o endereço da imagem.");
+        var extensions = new List<string>() {".jpg", ".jpeg", ".png", ".gif", ".tiff", ".bmp", ".exif"};
+    
+        for (var i = 0; i < extensions.Count; i++)
+        { 
+            if (urlImagem.EndsWith(extensions[i]))
+            {
+                var response = _client.GetAsync(urlImagem).Result;
+                using var stream = await response.Content.ReadAsStreamAsync();
+                using var memStream = new MemoryStream();
+                await stream.CopyToAsync(memStream);
+                memStream.Position = 0;
+                Bitmap originalImage = new(memStream);
+
+                memStream.Dispose();
+                return originalImage;
+            }
         }
-
-        var response = _client.GetAsync(urlImagem).Result;
-        using var stream = await response.Content.ReadAsStreamAsync();
-        using var memStream = new MemoryStream();
-        await stream.CopyToAsync(memStream);
-        memStream.Position = 0;
-        Bitmap originalImage = new(memStream);
-
-        memStream.Dispose();
-        return originalImage;
+        throw new ImageExtensionsException("Ops.. Algo deu errado. Verifique o endereço da imagem.");
     }
 
     private static void SaveSticker(string nameSticker, Bitmap sticker)
