@@ -39,9 +39,6 @@ public class LanguageService
       var filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Contains(languageName.ToLower()));
 
       return _collection.Find(filter).FirstOrDefault();
-      // return _collection.AsQueryable()
-      //         .Where(l => l.LanguageName.ToLower() == languageName.ToLower())
-      //         .FirstOrDefault();
     }
 
     public void Create(Language newLanguage)
