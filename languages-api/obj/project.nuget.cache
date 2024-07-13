@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "KdwxadoEYyM6MRL4OjPiSkJLLonAQJszIOiW0M5OnR7TXHxNFS3oCkUILLAYYEJ3kBeY7fCCpF9mrsBo7bL30g==",
+  "dgSpecHash": "JOuM/MoGqOAy1eGjNLlrGzIS+ho3V6vKtQiaZakOgDUqZ4XcLQQFZ3EsNzrPsup/TZmviZs08MSansO0CgMZwg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
+  "projectFilePath": "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\marid\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\marid\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

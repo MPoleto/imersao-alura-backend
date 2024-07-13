@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("languages-api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd677eb25bccd8cbc7f24a5d6252eae5f8e37853")]
 [assembly: System.Reflection.AssemblyProductAttribute("languages-api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("languages-api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

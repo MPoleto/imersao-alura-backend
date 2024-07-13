@@ -10,86 +10,101 @@ public class LanguageService
 
     public LanguageService(IOptions<LanguageDatabaseSettings> languageDbSettings)
     {
-      var client = new MongoClient(languageDbSettings.Value.ConnectionString);
+        var client = new MongoClient(languageDbSettings.Value.ConnectionString);
 
-      var mongoDatabase = client.GetDatabase(languageDbSettings.Value.DatabaseName);
+        var mongoDatabase = client.GetDatabase(languageDbSettings.Value.DatabaseName);
 
-      _collection = mongoDatabase.GetCollection<Language>(languageDbSettings.Value.CollectionName);
+        _collection = mongoDatabase.GetCollection<Language>(languageDbSettings.Value.CollectionName);
     }
 
     public List<Language> FindAll()
     {
-      return _collection.Find(l => true).ToList();
+        return _collection.Find(l => true).ToList();
     }
 
     public List<Language> SortByRank()
     {
-      var sort = Builders<Language>.Sort.Ascending(l => l.Rank);
+        var sort = Builders<Language>.Sort.Ascending(l => l.Rank);
 
-      return _collection.Find(l => true).Sort(sort).ToList();
+        return _collection.Find(l => true).Sort(sort).ToList();
     }
 
     public Language FindById(string id)
     {
-      return _collection.Find(l => l.Id == id).FirstOrDefault();
+        return _collection.Find(l => l.Id == id).FirstOrDefault();
     }
 
     public Language FindByName(string languageName)
     {
-      var filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Contains(languageName.ToLower()));
+        var filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Equals(languageName.ToLower()));
 
-      return _collection.Find(filter).FirstOrDefault();
+        var language = _collection.Find(filter).FirstOrDefault();
+
+        if (language is null)
+        {
+          filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Contains(languageName.ToLower()));
+        }
+
+        return _collection.Find(filter).FirstOrDefault();
     }
 
     public void Create(Language newLanguage)
     {
-      _collection.InsertOne(newLanguage);
+        _collection.InsertOne(newLanguage);
     }
 
     public void Update(string id, Language updatedLanguage)
     {
-      _collection.ReplaceOne(l => l.Id == id, updatedLanguage);
+        _collection.ReplaceOne(l => l.Id == id, updatedLanguage);
     }
 
     public void UpdateAccessCount(string languageName)
     {
-      var filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Contains(languageName.ToLower()));
+        try
+        {
+            var filter = Builders<Language>.Filter.Where(l => l.LanguageName.ToLower().Equals(languageName.ToLower()));
 
-      var value = _collection.Find(filter).FirstOrDefault().LanguageUsedCount;
-      var update = Builders<Language>.Update.Set(l => l.LanguageUsedCount, value+1);
-      
-      _collection.UpdateOne(filter, update);
+            var value = _collection.Find(filter).FirstOrDefault().LanguageUsedCount;
+            var update = Builders<Language>.Update.Set(l => l.LanguageUsedCount, value+1);
+            
+            _collection.UpdateOne(filter, update);
 
-      UpdateRanking();
+            UpdateRanking();
+          
+        }
+        catch (Exception)
+        {
+            throw new NullReferenceException("Essa linguagem não foi encontrada");
+        }
     }
 
     public void Remove(string id)
     {
-      _collection.DeleteOne(l => l.Id == id);
+        _collection.DeleteOne(l => l.Id == id);
     }
 
     private void UpdateRanking()
     {
-      var pipeline = new BsonDocument[]
-      {
-          new("$setWindowFields", 
-          new BsonDocument
-          {
-            { "sortBy", 
-              new BsonDocument("languageUsedCount", -1) 
-            }, 
-            { "output", 
-              new BsonDocument("rank", 
-              new BsonDocument("$documentNumber", 
-              new BsonDocument())) 
-            }
-          })
-      };
+        var pipeline = new BsonDocument[]
+        {
+            new("$setWindowFields", 
+            new BsonDocument
+            {
+                { "sortBy", 
+                    new BsonDocument("languageUsedCount", -1) 
+                }, 
+                { "output", 
+                    new BsonDocument("rank", 
+                    new BsonDocument("$documentNumber", 
+                    new BsonDocument())) 
+                }
+            })
+        };
 
-      PipelineDefinition<Language, Language> pipelineQueryable = pipeline;
-      var merge = PipelineStageDefinitionBuilder.Merge<Language, Language>(_collection, new MergeStageOptions<Language>());
-      var mergePipeline = pipelineQueryable.AppendStage(merge);
-      _collection.AggregateToCollection(mergePipeline);
+        PipelineDefinition<Language, Language> pipelineQueryable = pipeline;
+        var merge = PipelineStageDefinitionBuilder.Merge<Language, Language>(_collection, new MergeStageOptions<Language>());
+        var mergePipeline = pipelineQueryable.AppendStage(merge);
+        _collection.AggregateToCollection(mergePipeline);
       
     }
 }

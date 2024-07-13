@@ -4,24 +4,24 @@ namespace stickers;
 
 public class ContentExtractorLanguage : IContentExtractor
 {
-  public List<Content> ExtractContent(string json)
-  {
-    List<Content> contents = new();
-
-    using (JsonDocument document = JsonDocument.Parse(json))
+    public List<Content> ExtractContent(string json)
     {
-      JsonElement root = document.RootElement;
+        List<Content> contents = new();
 
-      contents = root.EnumerateArray()
-          .Select(p => new Content(
-              Title: p.GetProperty("name").ToString()
-                  .Replace(": ", "-")
-                  .Replace("#", "sharp")
-                  .Trim(), 
-              UrlImage: p.GetProperty("image").ToString()))
-          .ToList();
-    }
+        using (JsonDocument document = JsonDocument.Parse(json))
+        {
+            JsonElement root = document.RootElement;
 
-    return contents;
+            contents = root.EnumerateArray()
+                .Select(p => new Content(
+                    Title: p.GetProperty("name").ToString()
+                        .Replace(": ", "-")
+                        .Replace("#", "sharp")
+                        .Trim(), 
+                    UrlImage: p.GetProperty("image").ToString()))
+                .ToList();
+        }
+
+      return contents;
   }
 }

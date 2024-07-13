@@ -12,6 +12,7 @@ public class StickersGenerator
     {
         _client = new();
     }
+    
     public async void CreateSticker(string urlImage, string text, string nameSticker)
     {
         Bitmap originalImage = await GetImage(urlImage);
@@ -19,10 +20,7 @@ public class StickersGenerator
         int widthImage = originalImage.Width;
         int heightImage = originalImage.Height;
 
-        int spaceForText;
-
-        if (heightImage > widthImage) spaceForText = heightImage / 5;
-        else spaceForText = heightImage / 4;
+        int spaceForText = CalculateWordSpace(widthImage, heightImage);
 
         int newHeightImage = heightImage + spaceForText;
 
@@ -33,11 +31,56 @@ public class StickersGenerator
         Rectangle rectangle = new(0, 0, widthImage, heightImage);
         sticker.DrawImage(originalImage, rectangle);
 
+        AddTextToSticker(sticker, text, spaceForText, widthImage, newHeightImage);
+
+        SaveSticker(nameSticker, newImage);
+
+        sticker.Dispose();
+    }
+
+    private async Task<Bitmap> GetImage(string urlImage)
+    {
+        if (!IsTheImageExtensionCorrect(urlImage))
+        {
+            throw new ImageExtensionsException("Ops.. Algo deu errado. Verifique o endereço da imagem.");
+        }
+
+        var response = _client.GetAsync(urlImage).Result;
+        using var stream = await response.Content.ReadAsStreamAsync();
+        using var memStream = new MemoryStream();
+        await stream.CopyToAsync(memStream);
+        memStream.Position = 0;
+        Bitmap originalImage = new(memStream);
+
+        memStream.Dispose();
+        return originalImage;
+    }
+
+    private static bool IsTheImageExtensionCorrect(string urlImage)
+    {
+        var extensions = new List<string>() {".jpg", ".jpeg", ".png", ".gif", ".tiff", ".bmp", ".exif"};
+        var imgExtension = Path.GetExtension(urlImage);
+
+        foreach (var extension in extensions)
+        {
+            if (extension.Equals(imgExtension)) return true;
+        }
+        return false;
+    }
+
+    private static int CalculateWordSpace(int widthImage, int heightImage)
+    {
+        if (heightImage > widthImage) return heightImage / 5;
+        else return heightImage / 4;
+    }
+
+    private static void AddTextToSticker(Graphics sticker, string text, int wordSpace, int widthImage, int heightImage)
+    {
         float x = widthImage / 2f;
-        float y = newHeightImage - spaceForText / 2.5f;
+        float y = heightImage - wordSpace / 2.5f;
 
         float fontSize;
-        if (text.Length <= 5) fontSize = spaceForText * .8f;
+        if (text.Length <= 5) fontSize = wordSpace * .8f;
         else if (text.Length > 5 && text.Length <= 9) fontSize = widthImage / (text.Length - 1);
         else fontSize = widthImage / (text.Length - 3);
 
@@ -55,34 +98,6 @@ public class StickersGenerator
 
         sticker.DrawString(text, fontBorder, brushBorder, x, y, textAlign);
         sticker.DrawString(text, fontConfig, brush, x, y, textAlign);
-
-        SaveSticker(nameSticker, newImage);
-
-        sticker.Dispose();
-    }
-
-    private async Task<Bitmap> GetImage(string urlImagem)
-    {
-        if (!(urlImagem.EndsWith(".jpg") 
-            || urlImagem.EndsWith(".jpeg") 
-            || urlImagem.EndsWith(".png") 
-            || urlImagem.EndsWith(".gif") 
-            || urlImagem.EndsWith(".tiff") 
-            || urlImagem.EndsWith(".bmp")  
-            || urlImagem.EndsWith(".exif")))
-        {
-            throw new ImageExtensionsException("Ops.. Algo deu errado. Verifique o endereço da imagem.");
-        }
-
-        var response = _client.GetAsync(urlImagem).Result;
-        using var stream = await response.Content.ReadAsStreamAsync();
-        using var memStream = new MemoryStream();
-        await stream.CopyToAsync(memStream);
-        memStream.Position = 0;
-        Bitmap originalImage = new(memStream);
-
-        memStream.Dispose();
-        return originalImage;
     }
 
     private static void SaveSticker(string nameSticker, Bitmap sticker)

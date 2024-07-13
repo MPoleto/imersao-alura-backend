@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj": {}
+    "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj": {}
   },
   "projects": {
-    "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj": {
+    "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
+        "projectUniqueName": "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
         "projectName": "languages-api",
-        "projectPath": "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
+        "projectPath": "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\languages-api.csproj",
         "packagesPath": "C:\\Users\\marid\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\obj\\",
+        "outputPath": "c:\\Users\\marid\\Documents\\Pafarmaxp\\imersao-backend-alura\\languages-api\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\marid\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -22,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.306\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -35,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -69,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204\\RuntimeIdentifierGraph.json"
         }
       }
     }

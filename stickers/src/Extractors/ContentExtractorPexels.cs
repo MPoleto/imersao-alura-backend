@@ -1,24 +1,28 @@
 using System.Text.Json;
+
 namespace stickers;
 
 public class ContentExtractorPexels : IContentExtractor
 {
-  public List<Content> ExtractContent(string json)
-  {
-    List<Content> contents = new();
-
-    using (JsonDocument document = JsonDocument.Parse(json))
+    public List<Content> ExtractContent(string json)
     {
-      JsonElement root = document.RootElement;
-      JsonElement photosElement = root.GetProperty("photos");
+        List<Content> contents = new();
 
-      contents = photosElement.EnumerateArray()
-          .Select(p => new Content(
-              Title: p.GetProperty("alt").ToString().Replace(": ", "-").Replace(",", "").Trim(),
-              UrlImage: p.GetProperty("src").GetProperty("original").ToString()))
-          .ToList();
+        using (JsonDocument document = JsonDocument.Parse(json))
+        {
+            JsonElement root = document.RootElement;
+            JsonElement photosElement = root.GetProperty("photos");
+
+            contents = photosElement.EnumerateArray()
+                .Select(p => new Content(
+                    Title: p.GetProperty("alt").ToString()
+                        .Replace(": ", "-")
+                        .Replace(",", "")
+                        .Trim(),
+                    UrlImage: p.GetProperty("src").GetProperty("original").ToString()))
+                .ToList();
+        }
+
+        return contents;
     }
-
-    return contents;
-  }
 }
